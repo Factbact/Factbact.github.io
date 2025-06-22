@@ -8,7 +8,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
-    
     <!-- Chosen Palette: Calm Dojo (Background: stone-100, Text: stone-800, Accent: red-800/900) -->
     <!-- Application Structure Plan: サイトは単一ページの縦スクロール形式とし、訪問者が物語を読むように理念から具体的な取り組み、そして最終的な行動喚起（体験会）へと自然に流れるよう設計。1.ヒーローセクションで理念を提示、2.道場の約束で最大の差別化要因である「感動体験」を視覚化、3.マーケティング戦略を「地域との関わり」として紹介、4.活動内容で具体的なイメージを提供、5.指導者紹介で人間味を伝え、6.FAQとCTAで訪問者の最終的な疑問を解消し、行動を促す。この構造は、報告書の構成に縛られず、Web訪問者の心理的動線に最適化されているため選択した。 -->
     <!-- Visualization & Content Choices: 報告書は定性的な情報が中心のため、棒グラフ等の定量的チャートは不適切と判断。代わりに、事業の核である「塾生カルテ」を『私たちの約束』セクションでインタラクティブなダイアグラムとしてHTML/CSS/JSで視覚化。これは「Goal: Organize/Relationships」に合致し、塾生一人ひとりに向き合う姿勢を動的に示す。また、マーケティング戦略も静的なリストではなく、クリックで詳細が表示されるカード形式のダイアグラムとし、エンゲージメントを高める。これにより、SVG/Mermaidを使用せずとも、報告書の核心を効果的に伝える。 -->
