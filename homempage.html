@@ -1,373 +1,484 @@
 <!DOCTYPE html>
 <html lang="ja" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>格闘空手 國士塾 | 神奈川県の新しい空手道場</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
-    
-    <style>
-        body {
-            font-family: 'Noto Sans JP', sans-serif;
-        }
-        .text-shadow {
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.4);
-        }
-        .nav-link {
-            transition: color 0.3s, border-bottom-color 0.3s;
-            border-bottom: 2px solid transparent;
-        }
-        .nav-link:hover, .nav-link.active {
-            color: #991b1b; /* red-800 */
-            border-bottom-color: #991b1b;
-        }
-        .promise-diagram-center {
-            transition: all 0.3s ease-in-out;
-        }
-        .promise-diagram-item {
-            transition: all 0.3s ease-in-out;
-        }
-        .strategy-card {
-            transition: all 0.3s ease-in-out;
-            transform-style: preserve-3d;
-        }
-        .strategy-card.is-flipped {
-            transform: rotateY(180deg);
-        }
-        .card-face {
-            backface-visibility: hidden;
-            -webkit-backface-visibility: hidden;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>格闘空手 國士塾 | 神奈川県の新しい空手道場</title>
+  <meta name="description" content="神奈川県の『格闘空手 國士塾』。無料体験受付中。初心者・女性・お子さま歓迎。心技体を磨き、自信と礼節を育む。" />
+  <meta property="og:title" content="格闘空手 國士塾 | 無料体験受付中" />
+  <meta property="og:description" content="単なる道場ではなく、人生の羅針盤となる場所。心技体を科学的に鍛える新しい空手道場。" />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="ja_JP" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body { font-family: 'Noto Sans JP', sans-serif; }
+    .text-shadow { text-shadow: 2px 2px 4px rgba(0,0,0,0.4); }
+    .nav-link { transition: color .3s, border-bottom-color .3s; border-bottom: 2px solid transparent; }
+    .nav-link:hover, .nav-link.active { color: #991b1b; border-bottom-color: #991b1b; }
+    .promise-diagram-center, .promise-diagram-item, .strategy-card { transition: all .3s ease-in-out; }
+    .strategy-card { transform-style: preserve-3d; }
+    .strategy-card.is-flipped { transform: rotateY(180deg); }
+    .card-face { backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+    .badge { border: 1px solid rgba(0,0,0,.08); box-shadow: inset 0 -1px rgba(0,0,0,.04); }
+    .floating-cta { backdrop-filter: saturate(180%) blur(6px); }
+    details[open] summary svg { transform: rotate(180deg); }
+  </style>
 </head>
 <body class="bg-stone-100 text-stone-800">
+  <!-- ===== Top Nav ===== -->
+  <header id="header" class="bg-white/80 backdrop-blur-md sticky top-0 z-50 shadow-md">
+    <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
+      <a href="#hero" class="text-xl md:text-2xl font-black text-red-900">國士塾</a>
+      <div class="hidden md:flex items-center gap-6">
+        <a href="#reasons" class="nav-link">選ばれる理由</a>
+        <a href="#philosophy" class="nav-link">理念</a>
+        <a href="#promise" class="nav-link">約束</a>
+        <a href="#community" class="nav-link">地域</a>
+        <a href="#activity" class="nav-link">クラス</a>
+        <a href="#faq" class="nav-link">FAQ</a>
+        <a href="#contact" class="nav-link bg-red-800 text-white px-4 py-2 rounded-md hover:bg-red-900 transition-colors">無料体験</a>
+      </div>
+      <button id="mobile-menu-button" class="md:hidden focus:outline-none" aria-label="menu">
+        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+      </button>
+    </nav>
+    <div id="mobile-menu" class="hidden md:hidden border-t">
+      <a href="#reasons" class="block py-2 px-6 text-sm hover:bg-stone-200">選ばれる理由</a>
+      <a href="#philosophy" class="block py-2 px-6 text-sm hover:bg-stone-200">理念</a>
+      <a href="#promise" class="block py-2 px-6 text-sm hover:bg-stone-200">約束</a>
+      <a href="#community" class="block py-2 px-6 text-sm hover:bg-stone-200">地域</a>
+      <a href="#activity" class="block py-2 px-6 text-sm hover:bg-stone-200">クラス</a>
+      <a href="#faq" class="block py-2 px-6 text-sm hover:bg-stone-200">FAQ</a>
+      <a href="#contact" class="block py-2 px-6 text-sm bg-stone-200 font-bold hover:bg-stone-300">無料体験はこちら</a>
+    </div>
+  </header>
 
-    <header id="header" class="bg-white/80 backdrop-blur-md sticky top-0 z-50 shadow-md">
-        <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
-            <a href="#hero" class="text-xl md:text-2xl font-black text-red-900">國士塾</a>
-            <div class="hidden md:flex space-x-8">
-                <a href="#philosophy" class="nav-link">理念</a>
-                <a href="#promise" class="nav-link">私たちの約束</a>
-                <a href="#community" class="nav-link">地域との関わり</a>
-                <a href="#activity" class="nav-link">活動内容</a>
-                <a href="#contact" class="nav-link bg-red-800 text-white px-4 py-2 rounded-md hover:bg-red-900 transition-colors">無料体験会</a>
-            </div>
-            <button id="mobile-menu-button" class="md:hidden focus:outline-none">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
-            </button>
-        </nav>
-        <div id="mobile-menu" class="hidden md:hidden">
-            <a href="#philosophy" class="block py-2 px-6 text-sm hover:bg-stone-200">理念</a>
-            <a href="#promise" class="block py-2 px-6 text-sm hover:bg-stone-200">私たちの約束</a>
-            <a href="#community" class="block py-2 px-6 text-sm hover:bg-stone-200">地域との関わり</a>
-            <a href="#activity" class="block py-2 px-6 text-sm hover:bg-stone-200">活動内容</a>
-            <a href="#contact" class="block py-2 px-6 text-sm bg-stone-200 font-bold hover:bg-stone-300">無料体験会はこちら</a>
-        </div>
-    </header>
+  <!-- ===== Floating Mobile CTA ===== -->
+  <div class="md:hidden fixed bottom-4 left-1/2 -translate-x-1/2 z-40 w-[92%]">
+    <div class="floating-cta bg-white/80 border border-stone-200 shadow-xl rounded-xl px-4 py-3 flex items-center justify-between">
+      <div class="text-sm">
+        <div class="font-bold">今月の無料体験 残り<span id="slotsMobile" class="tabular-nums">—</span>名</div>
+        <div class="text-stone-500 text-xs">所要30〜45分・勧誘なし</div>
+      </div>
+      <a href="#contact" class="bg-red-800 hover:bg-red-900 text-white font-bold px-4 py-2 rounded-lg">申込</a>
+    </div>
+  </div>
 
-    <main>
-        <section id="hero" class="h-screen bg-cover bg-center flex items-center justify-center text-white" style="background-image: url('images/dojo-bg.jpg');">
-            <div class="text-center bg-black/60 p-8 md:p-12 rounded-lg max-w-4xl mx-auto backdrop-blur-sm">
-                <h1 class="text-4xl md:text-6xl lg:text-7xl font-black text-shadow tracking-wider mb-6">格闘空手 國士塾</h1>
-                <p class="mt-4 text-xl md:text-3xl font-light text-shadow leading-relaxed">
-                    単なる道場ではなく、人生の羅針盤となる場所。
-                </p>
-                <a href="#contact" class="mt-8 inline-block bg-red-800 hover:bg-red-900 text-white font-bold py-3 px-8 rounded-lg transition-all duration-300 text-lg shadow-lg hover:shadow-xl transform hover:-translate-y-1">
-                    まずは無料体験から
-                </a>
-            </div>
+  <main>
+    <!-- ===== Hero ===== -->
+    <section id="hero" class="min-h-[88vh] bg-cover bg-center flex items-center justify-center text-white relative" style="background-image: url('images/dojo-bg.jpg');">
+      <div class="absolute inset-0 bg-black/55"></div>
+      <div class="relative text-center p-6 md:p-12 max-w-4xl mx-auto">
+        <div class="inline-flex flex-wrap items-center justify-center gap-2 mb-4">
+          <span class="badge bg-white/90 text-stone-700 text-xs px-3 py-1 rounded-full">初心者歓迎</span>
+          <span class="badge bg-white/90 text-stone-700 text-xs px-3 py-1 rounded-full">女性・お子さまOK</span>
+          <span class="badge bg-white/90 text-stone-700 text-xs px-3 py-1 rounded-full">護身・体力づくり</span>
         </div>
+        <h1 class="text-4xl md:text-6xl lg:text-7xl font-black text-shadow tracking-wider mb-4">格闘空手 國士塾</h1>
+        <p class="mt-2 md:mt-4 text-lg md:text-2xl font-medium text-shadow leading-relaxed">
+          目に見える強さと、折れない心をつくる。<br class="hidden md:block">単なる道場ではなく、人生の羅針盤となる場所である。
+        </p>
+        <div class="mt-6 flex flex-col md:flex-row gap-3 md:gap-4 items-center justify-center">
+          <a href="#contact" class="inline-block bg-red-800 hover:bg-red-900 text-white font-bold py-3 px-8 rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">まずは無料体験</a>
+          <a href="#reasons" class="inline-block bg-white/10 hover:bg-white/20 border border-white/40 text-white font-bold py-3 px-8 rounded-lg transition-all">3分でわかる特徴</a>
+        </div>
+        <div class="mt-6 text-sm text-white/90">今月の無料体験 残り <span id="slots" class="font-bold tabular-nums">—</span> 名</div>
+      </div>
     </section>
 
-        <section id="philosophy" class="py-16 md:py-24 bg-white">
-            <div class="container mx-auto px-6 text-center">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4">國士塾の理念</h2>
-                <p class="max-w-3xl mx-auto text-stone-600 mb-12">
-                    私たちは、単に空手の技術を教えるだけの道場ではありません。<br>
-                    武道本来の厳しさの中に「楽しさ」と「成長実感」を見出し、塾生が自発的に「強くなりたい」と願える環境を創ります。<br>
-                    目指すのは、困難に立ち向かう精神力と、他者を思いやる優しさを備えた人間育成です。
-                </p>
-                <div class="grid md:grid-cols-3 gap-8">
-                    <div class="p-8 border-2 border-stone-200 rounded-lg">
-                        <div class="text-5xl font-black text-red-900 mb-4">心</div>
-                        <h3 class="text-xl font-bold mb-2">不動の精神</h3>
-                        <p class="text-stone-600">何事にも屈しない強い心、自分を律する克己心を養い、礼儀と節度を学びます。</p>
-                    </div>
-                    <div class="p-8 border-2 border-stone-200 rounded-lg">
-                        <div class="text-5xl font-black text-red-900 mb-4">技</div>
-                        <h3 class="text-xl font-bold mb-2">実戦の技術</h3>
-                        <p class="text-stone-600">護身にも役立つ実戦性を重視。基本から応用まで、使える技術を徹底的に指導します。</p>
-                    </div>
-                    <div class="p-8 border-2 border-stone-200 rounded-lg">
-                        <div class="text-5xl font-black text-red-900 mb-4">体</div>
-                        <h3 class="text-xl font-bold mb-2">強靭な肉体</h3>
-                        <p class="text-stone-600">科学的アプローチも取り入れ、安全かつ効果的に心身を鍛え上げます。</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="promise" class="py-16 md:py-24 bg-stone-100">
-            <div class="container mx-auto px-6">
-                <div class="text-center mb-12">
-                    <h2 class="text-3xl md:text-4xl font-bold mb-4">私たちの約束：感動体験の創出</h2>
-                    <p class="max-w-3xl mx-auto text-stone-600">
-                        私たちの最大の強みは、塾生一人ひとりとの人間的な繋がりです。指導員全員があなたのことを深く理解し、本気で向き合う。そのための仕組みが『塾生カルテ』です。これはあなたの成長物語を共に紡ぐための羅針盤です。
-                    </p>
-                </div>
-                <div class="flex flex-col lg:flex-row items-center gap-8">
-                    <div id="promise-diagram" class="w-full lg:w-1/2 h-96 relative flex items-center justify-center">
-                        <div id="diagram-center" class="promise-diagram-center w-32 h-32 md:w-40 md:h-40 bg-red-800 rounded-full flex flex-col items-center justify-center text-white text-center shadow-2xl cursor-pointer">
-                            <span class="font-bold text-lg">塾生</span>
-                            <span class="text-sm">(あなた)</span>
-                        </div>
-                        <div id="diagram-item-1" class="promise-diagram-item absolute w-24 h-24 md:w-28 md:h-28 bg-white rounded-full flex items-center justify-center text-center p-2 shadow-lg border-2 border-red-200">空手の目標<br>・成長</div>
-                        <div id="diagram-item-2" class="promise-diagram-item absolute w-24 h-24 md:w-28 md:h-28 bg-white rounded-full flex items-center justify-center text-center p-2 shadow-lg border-2 border-red-200">学校・仕事<br>での様子</div>
-                        <div id="diagram-item-3" class="promise-diagram-item absolute w-24 h-24 md:w-28 md:h-28 bg-white rounded-full flex items-center justify-center text-center p-2 shadow-lg border-2 border-red-200">趣味・<br>関心事</div>
-                        <div id="diagram-item-4" class="promise-diagram-item absolute w-24 h-24 md:w-28 md:h-28 bg-white rounded-full flex items-center justify-center text-center p-2 shadow-lg border-2 border-red-200">コンディション<br>・安全配慮</div>
-                    </div>
-                    <div class="w-full lg:w-1/2">
-                        <div id="promise-text-container" class="bg-white p-6 rounded-lg shadow-inner min-h-[16rem] flex items-center justify-center">
-                            <p id="promise-text" class="text-stone-700 text-lg text-center transition-opacity duration-300">
-                                中央の円や周りの項目にカーソルを合わせると、私たちがどのようにあなたと向き合うかが表示されます。
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <section id="community" class="py-16 md:py-24 bg-white">
-            <div class="container mx-auto px-6">
-                <div class="text-center mb-12">
-                    <h2 class="text-3xl md:text-4xl font-bold mb-4">ゼロからの挑戦：地域との関わり</h2>
-                    <p class="max-w-3xl mx-auto text-stone-600">
-                        私たちは指導者の情熱と足で地域との繋がりを築きます。一枚のチラシ、一回の挨拶から始まる信頼関係こそが、私たちの財産です。各カードをクリックして、私たちの取り組みをご覧ください。
-                    </p>
-                </div>
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                    <div class="strategy-card h-48 perspective-1000">
-                        <div class="card-face relative w-full h-full text-center p-6 bg-stone-100 border-2 border-red-200 rounded-lg flex flex-col justify-center items-center cursor-pointer">
-                            <h3 class="text-xl font-bold">オンライン発信</h3>
-                            <p class="text-sm mt-2">SNS・Google</p>
-                            <p class="text-xs mt-4 text-red-800">クリックして詳細を見る</p>
-                        </div>
-                        <div class="card-face absolute top-0 left-0 w-full h-full p-4 bg-red-800 text-white rounded-lg transform rotate-y-180 flex items-center justify-center">
-                            <p class="text-sm">GoogleマップやSNSで稽古の様子を毎日発信！あなたのスマホに私たちの情熱を届けます。</p>
-                        </div>
-                    </div>
-                    <div class="strategy-card h-48 perspective-1000">
-                        <div class="card-face relative w-full h-full text-center p-6 bg-stone-100 border-2 border-red-200 rounded-lg flex flex-col justify-center items-center cursor-pointer">
-                            <h3 class="text-xl font-bold">ピンポイント広報</h3>
-                            <p class="text-sm mt-2">自作チラシ</p>
-                            <p class="text-xs mt-4 text-red-800">クリックして詳細を見る</p>
-                        </div>
-                        <div class="card-face absolute top-0 left-0 w-full h-full p-4 bg-red-800 text-white rounded-lg transform rotate-y-180 flex items-center justify-center">
-                            <p class="text-sm">一枚一枚に想いを込めたチラシを、自分たちの足で地域にお届け。お店で見かけたら、ぜひ手に取ってください。</p>
-                        </div>
-                    </div>
-                    <div class="strategy-card h-48 perspective-1000">
-                        <div class="card-face relative w-full h-full text-center p-6 bg-stone-100 border-2 border-red-200 rounded-lg flex flex-col justify-center items-center cursor-pointer">
-                            <h3 class="text-xl font-bold">公開稽古</h3>
-                            <p class="text-sm mt-2">ゲリラ演武</p>
-                            <p class="text-xs mt-4 text-red-800">クリックして詳細を見る</p>
-                        </div>
-                        <div class="card-face absolute top-0 left-0 w-full h-full p-4 bg-red-800 text-white rounded-lg transform rotate-y-180 flex items-center justify-center">
-                            <p class="text-sm">地域の公園などで、私たちの稽古をサプライズ公開！空手の迫力と楽しさを生で感じてください。</p>
-                        </div>
-                    </div>
-                    <div class="strategy-card h-48 perspective-1000">
-                        <div class="card-face relative w-full h-full text-center p-6 bg-stone-100 border-2 border-red-200 rounded-lg flex flex-col justify-center items-center cursor-pointer">
-                            <h3 class="text-xl font-bold">感動体験会</h3>
-                            <p class="text-sm mt-2">口コミの源泉</p>
-                            <p class="text-xs mt-4 text-red-800">クリックして詳細を見る</p>
-                        </div>
-                        <div class="card-face absolute top-0 left-0 w-full h-full p-4 bg-red-800 text-white rounded-lg transform rotate-y-180 flex items-center justify-center">
-                            <p class="text-sm">「来てよかった！」心からそう思える体験会をお約束します。この感動が、私たちの最高の広告です。</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="activity" class="py-16 md:py-24 bg-stone-100">
-            <div class="container mx-auto px-6">
-                 <div class="text-center mb-12">
-                    <h2 class="text-3xl md:text-4xl font-bold mb-4">活動内容</h2>
-                    <p class="max-w-3xl mx-auto text-stone-600">
-                        國士塾では、年齢やレベル、目的に合わせたクラスを用意しています。どなたでも安心して、ご自身のペースで稽古に励むことができます。
-                    </p>
-                </div>
-                <div class="bg-white rounded-lg shadow-lg overflow-hidden">
-                    <div class="p-6 md:p-8">
-                        <div class="grid md:grid-cols-2 gap-8">
-                            <div>
-                                <h3 class="text-xl font-bold text-red-900 border-b-2 border-red-800 pb-2 mb-4">少年部（小学生〜中学生）</h3>
-                                <p class="text-stone-600 mb-4">元気な挨拶や返事といった礼儀作法の指導を徹底。ゲーム性を取り入れた稽古で、楽しみながら心と体を鍛え、いじめない・いじめられない強い心を育てます。</p>
-                                <ul class="list-disc list-inside text-stone-700">
-                                    <li>礼儀作法・基礎体力</li>
-                                    <li>基本稽古・形稽古</li>
-                                    <li>安全な組手稽古</li>
-                                </ul>
-                            </div>
-                            <div>
-                                <h3 class="text-xl font-bold text-red-900 border-b-2 border-red-800 pb-2 mb-4">一般部（高校生〜社会人）</h3>
-                                <p class="text-stone-600 mb-4">日々のストレス解消、体力向上、本格的な強さの追求まで、一人ひとりの目的に応えます。護身術としても役立つ実戦的な技術を指導します。</p>
-                                <ul class="list-disc list-inside text-stone-700">
-                                    <li>フィジカルトレーニング</li>
-                                    <li>実戦組手・ミット打ち</li>
-                                    <li>護身術・応用技術</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                     <div class="bg-stone-50 p-6 border-t border-stone-200">
-                        <h4 class="font-bold text-center">稽古スケジュール（例）</h4>
-                        <p class="text-sm text-center text-stone-500 mt-1">※詳細は変動する可能性があります。お問い合わせください。</p>
-                    <div class="text-center py-8">
-                        <div class="inline-block bg-red-100 border border-red-300 rounded-lg px-6 py-4">
-                            <p class="text-red-800 font-bold text-lg">現在準備中</p>
-                            <p class="text-red-600 text-sm mt-2">詳細なスケジュールは近日公開予定です</p>
-                        </div>
-                    </div>
-
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="contact" class="py-16 md:py-24 bg-white">
-            <div class="container mx-auto px-6">
-                <div class="text-center mb-12">
-                    <h2 class="text-3xl md:text-4xl font-bold mb-4">さあ、最初の一歩を。</h2>
-                    <p class="max-w-3xl mx-auto text-stone-600">
-                        見学・無料体験はいつでも大歓迎です。少しでも興味を持たれた方は、お気軽にお問い合わせください。<br>
-                        道場でお会いできることを心より楽しみにしております。
-                    </p>
-                </div>
-                <div class="max-w-lg mx-auto bg-stone-50 p-8 rounded-lg shadow-lg">
-                    <h3 class="text-2xl font-bold text-center mb-6">無料体験会 お申し込み</h3>
-                    <form action="https://formspree.io/f/mgvzoevl" method="POST">
-                        <input type="hidden" name="_next" value="thanks.html">
-
-                        <div class="mb-4">
-                            <label for="name" class="block text-stone-700 font-bold mb-2">お名前</label>
-                            <input type="text" id="name" name="name" class="w-full px-3 py-2 border border-stone-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-800 focus:border-transparent" required>
-                        </div>
-                        <div class="mb-4">
-                            <label for="email" class="block text-stone-700 font-bold mb-2">メールアドレス</label>
-                            <input type="email" id="email" name="email" class="w-full px-3 py-2 border border-stone-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-800 focus:border-transparent" required>
-                        </div>
-                        <div class="mb-4">
-                            <label for="message" class="block text-stone-700 font-bold mb-2">ご質問・ご希望日など</label>
-                            <textarea id="message" name="message" rows="4" class="w-full px-3 py-2 border border-stone-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-800 focus:border-transparent" required></textarea>
-                        </div>
-                        <div class="text-center">
-                            <button type="submit" class="w-full bg-red-800 text-white py-3 px-4 rounded-md font-bold hover:bg-red-900 transition-colors">
-                                送信する
-                            </button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer class="bg-stone-800 text-white">
-        <div class="container mx-auto px-6 py-4 text-center">
-            <p>&copy; 2025 格闘空手 國士塾. All Rights Reserved.</p>
-            <p class="text-sm text-stone-400 mt-1">神奈川県で、あなたの挑戦をお待ちしています。</p>
+    <!-- ===== Reasons (Benefit-first) ===== -->
+    <section id="reasons" class="py-16 md:py-24 bg-white">
+      <div class="container mx-auto px-6">
+        <h2 class="text-3xl md:text-4xl font-bold text-center mb-4">國士塾が選ばれる3つの理由</h2>
+        <p class="text-center text-stone-600 max-w-3xl mx-auto mb-10">コンセプトは「人として強く、優しく」。心技体をバランス良く伸ばし、自ら続けたくなる設計である。</p>
+        <div class="grid md:grid-cols-3 gap-6">
+          <div class="bg-stone-50 border border-stone-200 rounded-xl p-6">
+            <h3 class="text-xl font-extrabold text-red-900 mb-2">① 続く仕組み</h3>
+            <p class="text-stone-700">楽しさ×成長実感の設計。小目標・可視化・称賛をサイクル化し、三日坊主を防ぐ。</p>
+          </div>
+          <div class="bg-stone-50 border border-stone-200 rounded-xl p-6">
+            <h3 class="text-xl font-extrabold text-red-900 mb-2">② 使える実戦性</h3>
+            <p class="text-stone-700">基本から応用まで、護身にも通じる技を段階指導。安全管理を徹底する。</p>
+          </div>
+          <div class="bg-stone-50 border border-stone-200 rounded-xl p-6">
+            <h3 class="text-xl font-extrabold text-red-900 mb-2">③ 人が育つ関わり</h3>
+            <p class="text-stone-700">『塾生カルテ』で個性と状況を把握。礼節・自律・思いやりを鍛える。</p>
+          </div>
         </div>
-    </footer>
+        <div class="mt-10 grid md:grid-cols-2 gap-6">
+          <div class="bg-white border border-stone-200 rounded-xl p-6">
+            <h4 class="font-bold mb-2">こんな方に向いている</h4>
+            <ul class="space-y-2 text-stone-700">
+              <li>・運動未経験だが体力をつけたい</li>
+              <li>・礼儀や集中力を身につけさせたい（お子さま）</li>
+              <li>・ストレス解消と護身を同時に叶えたい</li>
+              <li>・大会や昇級を目標に本格的に取り組みたい</li>
+            </ul>
+          </div>
+          <div class="bg-white border border-stone-200 rounded-xl p-6">
+            <h4 class="font-bold mb-2">安全への配慮</h4>
+            <p class="text-stone-700">段階的負荷・用具着用・体調ヒアリングを徹底。無理をさせない方針で事故を未然に防ぐ。</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // Mobile Menu Toggle
-            const mobileMenuButton = document.getElementById('mobile-menu-button');
-            const mobileMenu = document.getElementById('mobile-menu');
-            mobileMenuButton.addEventListener('click', () => {
-                mobileMenu.classList.toggle('hidden');
+    <!-- ===== Philosophy (kept) ===== -->
+    <section id="philosophy" class="py-16 md:py-24 bg-stone-50">
+      <div class="container mx-auto px-6 text-center">
+        <h2 class="text-3xl md:text-4xl font-bold mb-4">國士塾の理念</h2>
+        <p class="max-w-3xl mx-auto text-stone-600 mb-12">
+          私たちは、単に空手の技術を教えるだけの道場ではない。武道本来の厳しさの中に「楽しさ」と「成長実感」を見出し、塾生が自発的に「強くなりたい」と願える環境をつくる。目指すのは、困難に立ち向かう精神力と、他者を思いやる優しさを備えた人間育成である。
+        </p>
+        <div class="grid md:grid-cols-3 gap-8">
+          <div class="p-8 border-2 border-stone-200 rounded-lg">
+            <div class="text-5xl font-black text-red-900 mb-4">心</div>
+            <h3 class="text-xl font-bold mb-2">不動の精神</h3>
+            <p class="text-stone-600">自律・礼節・克己の習慣化を行い、ぶれない心を育む。</p>
+          </div>
+          <div class="p-8 border-2 border-stone-200 rounded-lg">
+            <div class="text-5xl font-black text-red-900 mb-4">技</div>
+            <h3 class="text-xl font-bold mb-2">実戦の技術</h3>
+            <p class="text-stone-600">基本→応用→実用の順で段階指導。護身につながる型と組手を磨く。</p>
+          </div>
+          <div class="p-8 border-2 border-stone-200 rounded-lg">
+            <div class="text-5xl font-black text-red-900 mb-4">体</div>
+            <h3 class="text-xl font-bold mb-2">強靭な肉体</h3>
+            <p class="text-stone-600">科学的アプローチで安全に体力と可動域を高める。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Promise (kept with UX) ===== -->
+    <section id="promise" class="py-16 md:py-24 bg-stone-100">
+      <div class="container mx-auto px-6">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl md:text-4xl font-bold mb-4">私たちの約束：感動体験の創出</h2>
+          <p class="max-w-3xl mx-auto text-stone-600">最大の強みは、人に向き合う力である。『塾生カルテ』を活用し、目標・学校や仕事の状況・趣味関心・体調安全を総合把握する。</p>
+        </div>
+        <div class="flex flex-col lg:flex-row items-center gap-8">
+          <div id="promise-diagram" class="w-full lg:w-1/2 h-96 relative flex items-center justify-center">
+            <div id="diagram-center" class="promise-diagram-center w-32 h-32 md:w-40 md:h-40 bg-red-800 rounded-full flex flex-col items-center justify-center text-white text-center shadow-2xl cursor-pointer">
+              <span class="font-bold text-lg">塾生</span>
+              <span class="text-sm">(あなた)</span>
+            </div>
+            <div id="diagram-item-1" class="promise-diagram-item absolute w-24 h-24 md:w-28 md:h-28 bg-white rounded-full flex items-center justify-center text-center p-2 shadow-lg border-2 border-red-200">空手の目標<br>・成長</div>
+            <div id="diagram-item-2" class="promise-diagram-item absolute w-24 h-24 md:w-28 md:h-28 bg-white rounded-full flex items-center justify-center text-center p-2 shadow-lg border-2 border-red-200">学校・仕事<br>での様子</div>
+            <div id="diagram-item-3" class="promise-diagram-item absolute w-24 h-24 md:w-28 md:h-28 bg-white rounded-full flex items-center justify-center text-center p-2 shadow-lg border-2 border-red-200">趣味・<br>関心事</div>
+            <div id="diagram-item-4" class="promise-diagram-item absolute w-24 h-24 md:w-28 md:h-28 bg-white rounded-full flex items-center justify-center text-center p-2 shadow-lg border-2 border-red-200">コンディション<br>・安全配慮</div>
+          </div>
+          <div class="w-full lg:w-1/2">
+            <div id="promise-text-container" class="bg-white p-6 rounded-lg shadow-inner min-h-[16rem] flex items-center justify-center">
+              <p id="promise-text" class="text-stone-700 text-lg text-center transition-opacity duration-300">中央や項目にカーソルを合わせると詳細が表示される。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Community (kept) ===== -->
+    <section id="community" class="py-16 md:py-24 bg-white">
+      <div class="container mx-auto px-6">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl md:text-4xl font-bold mb-4">ゼロからの挑戦：地域との関わり</h2>
+          <p class="max-w-3xl mx-auto text-stone-600">情熱と誠実な発信で信頼を積み上げる。カードをクリックで詳細が見られる。</p>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div class="strategy-card h-48 perspective-1000">
+            <div class="card-face relative w-full h-full text-center p-6 bg-stone-100 border-2 border-red-200 rounded-lg flex flex-col justify-center items-center cursor-pointer">
+              <h3 class="text-xl font-bold">オンライン発信</h3>
+              <p class="text-sm mt-2">SNS・Google</p>
+              <p class="text-xs mt-4 text-red-800">クリックして詳細</p>
+            </div>
+            <div class="card-face absolute top-0 left-0 w-full h-full p-4 bg-red-800 text-white rounded-lg transform rotate-y-180 flex items-center justify-center">
+              <p class="text-sm">稽古の様子を継続発信。来館前から雰囲気が伝わる。</p>
+            </div>
+          </div>
+          <div class="strategy-card h-48 perspective-1000">
+            <div class="card-face relative w-full h-full text-center p-6 bg-stone-100 border-2 border-red-200 rounded-lg flex flex-col justify-center items-center cursor-pointer">
+              <h3 class="text-xl font-bold">ピンポイント広報</h3>
+              <p class="text-sm mt-2">自作チラシ</p>
+              <p class="text-xs mt-4 text-red-800">クリックして詳細</p>
+            </div>
+            <div class="card-face absolute top-0 left-0 w-full h-full p-4 bg-red-800 text-white rounded-lg transform rotate-y-180 flex items-center justify-center">
+              <p class="text-sm">地域回遊で接点創出。興味層に丁寧に届ける。</p>
+            </div>
+          </div>
+          <div class="strategy-card h-48 perspective-1000">
+            <div class="card-face relative w-full h-full text-center p-6 bg-stone-100 border-2 border-red-200 rounded-lg flex flex-col justify-center items-center cursor-pointer">
+              <h3 class="text-xl font-bold">公開稽古</h3>
+              <p class="text-sm mt-2">ゲリラ演武</p>
+              <p class="text-xs mt-4 text-red-800">クリックして詳細</p>
+            </div>
+            <div class="card-face absolute top-0 left-0 w-full h-full p-4 bg-red-800 text-white rounded-lg transform rotate-y-180 flex items-center justify-center">
+              <p class="text-sm">迫力と楽しさをライブで体感できる機会を用意。</p>
+            </div>
+          </div>
+          <div class="strategy-card h-48 perspective-1000">
+            <div class="card-face relative w-full h-full text-center p-6 bg-stone-100 border-2 border-red-200 rounded-lg flex flex-col justify-center items-center cursor-pointer">
+              <h3 class="text-xl font-bold">感動体験会</h3>
+              <p class="text-sm mt-2">口コミの源泉</p>
+              <p class="text-xs mt-4 text-red-800">クリックして詳細</p>
+            </div>
+            <div class="card-face absolute top-0 left-0 w-full h-full p-4 bg-red-800 text-white rounded-lg transform rotate-y-180 flex items-center justify-center">
+              <p class="text-sm">「来てよかった」を確実にする設計で満足度を高める。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Classes & Pricing (sample placeholders) ===== -->
+    <section id="activity" class="py-16 md:py-24 bg-stone-50">
+      <div class="container mx-auto px-6">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl md:text-4xl font-bold mb-4">クラスと料金<span class="text-xs align-super text-stone-500">（表示は仮。実数に差し替え）</span></h2>
+          <p class="max-w-3xl mx-auto text-stone-600">目的・年齢に応じて最適なクラスを用意する。無料体験で雰囲気と指導を確認できる。</p>
+        </div>
+        <div class="grid md:grid-cols-3 gap-6">
+          <div class="bg-white rounded-xl border border-stone-200 shadow-sm p-6 flex flex-col">
+            <h3 class="font-extrabold text-lg mb-1">少年部</h3>
+            <p class="text-sm text-stone-600 mb-4">小学生〜中学生。礼儀・基礎体力・安全な組手。</p>
+            <div class="mt-auto pt-4 text-stone-700"><span class="text-2xl font-black">月謝 7,000円</span><span class="text-xs text-stone-500">（仮）</span></div>
+          </div>
+          <div class="bg-white rounded-xl border border-stone-200 shadow-sm p-6 flex flex-col">
+            <h3 class="font-extrabold text-lg mb-1">一般部</h3>
+            <p class="text-sm text-stone-600 mb-4">高校生〜一般。体力づくりから実戦まで。</p>
+            <div class="mt-auto pt-4 text-stone-700"><span class="text-2xl font-black">月謝 8,800円</span><span class="text-xs text-stone-500">（仮）</span></div>
+          </div>
+          <div class="bg-white rounded-xl border border-stone-200 shadow-sm p-6 flex flex-col">
+            <h3 class="font-extrabold text-lg mb-1">ファミリー</h3>
+            <p class="text-sm text-stone-600 mb-4">家族で通いやすいプラン。</p>
+            <div class="mt-auto pt-4 text-stone-700"><span class="text-2xl font-black">割引あり</span><span class="text-xs text-stone-500">（仮）</span></div>
+          </div>
+        </div>
+        <p class="text-center text-xs text-stone-500 mt-4">※実際の料金・スケジュールはお問い合わせにて案内する。</p>
+      </div>
+    </section>
+
+    <!-- ===== Social proof ===== -->
+    <section class="py-12 md:py-16 bg-white">
+      <div class="container mx-auto px-6">
+        <div class="grid md:grid-cols-3 gap-6 items-stretch">
+          <div class="bg-stone-50 border border-stone-200 rounded-xl p-6">
+            <div class="text-sm text-stone-500">保護者の声（例）</div>
+            <p class="mt-2">「挨拶と集中力が変わった。試験前でも自分で計画できるようになった。」</p>
+            <div class="mt-3 text-xs text-stone-500">※掲載例。実際の声に差し替え</div>
+          </div>
+          <div class="bg-stone-50 border border-stone-200 rounded-xl p-6">
+            <div class="text-sm text-stone-500">生徒の声（例）</div>
+            <p class="mt-2">「ミット打ちがストレス解消になる。褒められて続けられる。」</p>
+            <div class="mt-3 text-xs text-stone-500">※掲載例。実際の声に差し替え</div>
+          </div>
+          <div class="bg-stone-50 border border-stone-200 rounded-xl p-6">
+            <div class="text-sm text-stone-500">実績（例）</div>
+            <p class="mt-2">昇級者の目標達成率や継続率を数字で提示すると効果が高い。</p>
+            <div class="mt-3 text-xs text-stone-500">※実数に差し替え</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Access ===== -->
+    <section id="access" class="py-16 md:py-20 bg-stone-50">
+      <div class="container mx-auto px-6">
+        <h2 class="text-3xl md:text-4xl font-bold text-center mb-6">アクセス</h2>
+        <div class="grid md:grid-cols-2 gap-6 items-start">
+          <div class="bg-white border border-stone-200 rounded-xl p-6">
+            <p class="font-bold">所在地（仮）</p>
+            <p class="text-stone-700">神奈川県〇〇市〇〇 1-2-3 ○○ビル ○階</p>
+            <p class="mt-3 text-sm text-stone-600">最寄り駅：□□駅 徒歩△分 / 駐車場：有（台数に限りあり）</p>
+            <div class="mt-4 text-sm text-stone-600">開館日・時間は体験申込時に案内する。</div>
+          </div>
+          <div class="aspect-video bg-stone-200 rounded-xl overflow-hidden">
+            <!-- 実際のGoogle Map埋め込みに差し替え -->
+            <iframe title="map" src="about:blank" class="w-full h-full"></iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Contact / CTA ===== -->
+    <section id="contact" class="py-16 md:py-24 bg-white">
+      <div class="container mx-auto px-6">
+        <div class="text-center mb-8">
+          <h2 class="text-3xl md:text-4xl font-bold mb-2">無料体験に申し込む</h2>
+          <p class="max-w-3xl mx-auto text-stone-600">所要30〜45分。服装自由。強引な勧誘は行わない。体験後24時間以内の入会で入会金割引<span class="text-xs text-stone-500">（例・実施時のみ）</span>。</p>
+        </div>
+        <div class="max-w-2xl mx-auto bg-stone-50 p-8 rounded-lg shadow-lg">
+          <form action="https://formspree.io/f/mgvzoevl" method="POST" class="space-y-4">
+            <input type="hidden" name="_next" value="thanks.html" />
+            <div>
+              <label for="name" class="block text-stone-700 font-bold mb-1">お名前</label>
+              <input type="text" id="name" name="name" class="w-full px-3 py-2 border border-stone-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-800" required />
+            </div>
+            <div class="grid md:grid-cols-2 gap-4">
+              <div>
+                <label for="email" class="block text-stone-700 font-bold mb-1">メールアドレス</label>
+                <input type="email" id="email" name="email" class="w-full px-3 py-2 border border-stone-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-800" required />
+              </div>
+              <div>
+                <label for="phone" class="block text-stone-700 font-bold mb-1">電話番号（任意）</label>
+                <input type="tel" id="phone" name="phone" class="w-full px-3 py-2 border border-stone-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-800" />
+              </div>
+            </div>
+            <div>
+              <label for="source" class="block text-stone-700 font-bold mb-1">どこで知ったか</label>
+              <select id="source" name="source" class="w-full px-3 py-2 border border-stone-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-800">
+                <option>Google検索</option>
+                <option>SNS</option>
+                <option>チラシ</option>
+                <option>紹介</option>
+                <option>通りがかり</option>
+              </select>
+            </div>
+            <div>
+              <label for="message" class="block text-stone-700 font-bold mb-1">ご希望日・ご質問</label>
+              <textarea id="message" name="message" rows="4" class="w-full px-3 py-2 border border-stone-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-800" required></textarea>
+            </div>
+            <div class="text-center">
+              <button type="submit" class="w-full bg-red-800 text-white py-3 px-4 rounded-md font-bold hover:bg-red-900 transition-colors">送信する</button>
+              <p class="mt-2 text-xs text-stone-500">送信で<a href="#" class="underline">プライバシーポリシー</a>に同意したものとみなす。</p>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== FAQ ===== -->
+    <section id="faq" class="py-16 md:py-20 bg-stone-50">
+      <div class="container mx-auto px-6 max-w-3xl">
+        <h2 class="text-3xl md:text-4xl font-bold text-center mb-6">よくある質問</h2>
+        <div class="space-y-3">
+          <details class="bg-white border border-stone-200 rounded-xl p-4">
+            <summary class="font-bold cursor-pointer flex items-center justify-between">運動未経験でも大丈夫か？<svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></summary>
+            <p class="mt-2 text-stone-700">段階指導で基礎から行う。体力や不安に応じてメニューを調整する。</p>
+          </details>
+          <details class="bg-white border border-stone-200 rounded-xl p-4">
+            <summary class="font-bold cursor-pointer flex items-center justify-between">危なくないか？<svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></summary>
+            <p class="mt-2 text-stone-700">用具着用・ルール厳守・体調確認で安全第一。無理をさせない。</p>
+          </details>
+          <details class="bg-white border border-stone-200 rounded-xl p-4">
+            <summary class="font-bold cursor-pointer flex items-center justify-between">女性や子どもも参加できるか？<svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></summary>
+            <p class="mt-2 text-stone-700">歓迎する。目的に合わせてメニューを最適化する。</p>
+          </details>
+          <details class="bg-white border border-stone-200 rounded-xl p-4">
+            <summary class="font-bold cursor-pointer flex items-center justify-between">費用はいくらか？<svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></summary>
+            <p class="mt-2 text-stone-700">上記の表示は仮である。実際の料金はフォーム送信後に案内する。</p>
+          </details>
+        </div>
+        <div class="text-center mt-6"><a href="#contact" class="inline-block bg-red-800 hover:bg-red-900 text-white font-bold py-3 px-8 rounded-lg">無料体験を申し込む</a></div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== Footer ===== -->
+  <footer class="bg-stone-800 text-white">
+    <div class="container mx-auto px-6 py-6 text-center">
+      <p>&copy; 2025 格闘空手 國士塾. All Rights Reserved.</p>
+      <p class="text-sm text-stone-400 mt-1">神奈川県で、あなたの挑戦を待っている。</p>
+    </div>
+  </footer>
+
+  <!-- ===== Scripts ===== -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Mobile menu
+      const mobileMenuButton = document.getElementById('mobile-menu-button');
+      const mobileMenu = document.getElementById('mobile-menu');
+      mobileMenuButton?.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+
+      // Nav active on scroll
+      const sections = document.querySelectorAll('main section');
+      const navLinks = document.querySelectorAll('.nav-link');
+      const io = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            navLinks.forEach(link => {
+              link.classList.remove('active');
+              if (link.getAttribute('href').substring(1) === entry.target.id) link.classList.add('active');
             });
-
-            // Nav link active state on scroll
-            const sections = document.querySelectorAll('main section');
-            const navLinks = document.querySelectorAll('.nav-link');
-            
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        navLinks.forEach(link => {
-                            link.classList.remove('active');
-                            if (link.getAttribute('href').substring(1) === entry.target.id) {
-                                link.classList.add('active');
-                            }
-                        });
-                    }
-                });
-            }, { rootMargin: '-50% 0px -50% 0px' });
-
-            sections.forEach(section => {
-                observer.observe(section);
-            });
-            
-            // Promise Diagram Interaction
-            const diagramCenter = document.getElementById('diagram-center');
-            const diagramItems = document.querySelectorAll('.promise-diagram-item');
-            const promiseText = document.getElementById('promise-text');
-
-            const promiseData = {
-                'diagram-center': '私たちは、塾生である**あなた**を全ての中心に考え、一人ひとりの個性と向き合います。',
-                'diagram-item-1': '「黒帯になりたい」「大会で勝ちたい」といった**空手の目標**から、「自信をつけたい」という内面的な目標まで、全てを共有し、達成への道を共に歩みます。',
-                'diagram-item-2': '「学校のテスト期間」「仕事の繁忙期」など、**道場の外でのあなたの状況**も考慮します。無理なく、しかし着実に成長できるよう、稽古の強度や内容を調整します。',
-                'diagram-item-3': '空手以外の**趣味や関心事**について話すことも大歓迎です。何気ない会話から、あなたの新しい一面を知り、より深い信頼関係を築きたいと考えています。',
-                'diagram-item-4': 'あなたの**健康状態やその日のコンディション**を常に把握し、安全を最優先します。「褒めて伸びる」「じっくり考える」といった性格も尊重し、最適な指導を心がけます。'
-            };
-            
-            const defaultText = promiseText.innerHTML;
-
-            const updatePromiseText = (key) => {
-                promiseText.style.opacity = '0';
-                setTimeout(() => {
-                    promiseText.innerHTML = promiseData[key];
-                    promiseText.style.opacity = '1';
-                }, 200);
-            };
-
-            diagramCenter.addEventListener('mouseover', () => updatePromiseText('diagram-center'));
-            diagramItems.forEach(item => {
-                item.addEventListener('mouseover', () => updatePromiseText(item.id));
-            });
-            
-            document.getElementById('promise-diagram').addEventListener('mouseleave', () => {
-                promiseText.style.opacity = '0';
-                setTimeout(() => {
-                    promiseText.innerHTML = defaultText;
-                    promiseText.style.opacity = '1';
-                }, 200);
-            });
-
-            // Positioning diagram items
-            const diagramContainer = document.getElementById('promise-diagram');
-            const radius = diagramContainer.offsetWidth / 2.8;
-            diagramItems.forEach((item, index) => {
-                const angle = (index / diagramItems.length) * 2 * Math.PI - (Math.PI / 2);
-                const x = Math.cos(angle) * radius;
-                const y = Math.sin(angle) * radius;
-                item.style.transform = `translate(${x}px, ${y}px)`;
-            });
-
-            // Strategy Cards Interaction
-            const strategyCards = document.querySelectorAll('.strategy-card');
-            strategyCards.forEach(card => {
-                card.addEventListener('click', () => {
-                    card.classList.toggle('is-flipped');
-                });
-            });
+          }
         });
-    </script>
+      }, { rootMargin: '-50% 0px -50% 0px' });
+      sections.forEach(s => io.observe(s));
+
+      // Promise diagram text
+      const promiseText = document.getElementById('promise-text');
+      const promiseData = {
+        'diagram-center': '私たちは、塾生である<strong>あなた</strong>を中心に考え、個性と状況に合わせて最適化する。',
+        'diagram-item-1': '昇級・大会・護身などの目標を共有し、小さな達成を積み上げる。',
+        'diagram-item-2': 'テストや繁忙期を考慮し、無理なく続く負荷設計にする。',
+        'diagram-item-3': '会話を通じて興味を理解し、動機づけに生かす。',
+        'diagram-item-4': '体調や気質を把握し、安全第一で進める。'
+      };
+      const diagramCenter = document.getElementById('diagram-center');
+      const diagramItems = document.querySelectorAll('.promise-diagram-item');
+      const defaultText = promiseText?.innerHTML;
+      const updateText = (key) => { if (!promiseText) return; promiseText.style.opacity = '0'; setTimeout(() => { promiseText.innerHTML = promiseData[key]; promiseText.style.opacity = '1'; }, 180); };
+      diagramCenter?.addEventListener('mouseover', () => updateText('diagram-center'));
+      diagramItems.forEach(item => item.addEventListener('mouseover', () => updateText(item.id)));
+      document.getElementById('promise-diagram')?.addEventListener('mouseleave', () => { if (!promiseText) return; promiseText.style.opacity = '0'; setTimeout(() => { promiseText.innerHTML = defaultText; promiseText.style.opacity = '1'; }, 180); });
+
+      // Positioning diagram items
+      const diagramContainer = document.getElementById('promise-diagram');
+      if (diagramContainer) {
+        const radius = diagramContainer.offsetWidth / 2.8;
+        diagramItems.forEach((item, index) => {
+          const angle = (index / diagramItems.length) * 2 * Math.PI - (Math.PI / 2);
+          const x = Math.cos(angle) * radius;
+          const y = Math.sin(angle) * radius;
+          item.style.transform = `translate(${x}px, ${y}px)`;
+        });
+        window.addEventListener('resize', () => {
+          const r = diagramContainer.offsetWidth / 2.8;
+          diagramItems.forEach((item, index) => {
+            const angle = (index / diagramItems.length) * 2 * Math.PI - (Math.PI / 2);
+            const x = Math.cos(angle) * r;
+            const y = Math.sin(angle) * r;
+            item.style.transform = `translate(${x}px, ${y}px)`;
+          });
+        });
+      }
+
+      // Strategy card flip
+      const strategyCards = document.querySelectorAll('.strategy-card');
+      strategyCards.forEach(card => card.addEventListener('click', () => card.classList.toggle('is-flipped')));
+
+      // Dummy remaining slots (marketing UX) — replace with real logic if必要
+      const calcSlots = () => {
+        const day = new Date().getDate();
+        return Math.max(0, 8 - (day % 6)); // 0〜8の範囲で擬似的に変動
+      };
+      const slots = calcSlots();
+      const el1 = document.getElementById('slots');
+      const el2 = document.getElementById('slotsMobile');
+      if (el1) el1.textContent = String(slots);
+      if (el2) el2.textContent = String(slots);
+    });
+  </script>
+
+  <!-- ===== Structured Data (sample / replace) ===== -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SportsActivityLocation",
+    "name": "格闘空手 國士塾",
+    "address": {
+      "@type": "PostalAddress",
+      "addressRegion": "神奈川県",
+      "addressLocality": "〇〇市",
+      "streetAddress": "1-2-3"
+    },
+    "description": "初心者・女性・お子さま歓迎の空手道場。無料体験受付中。",
+    "areaServed": "神奈川県",
+    "url": "https://example.com",
+    "telephone": "+81-00-0000-0000"
+  }
+  </script>
 </body>
 </html>
-```
