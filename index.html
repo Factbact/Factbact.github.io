@@ -11,151 +11,275 @@
 
   <style>
     body { font-family: 'Noto Sans JP', sans-serif; }
-    .text-shadow { text-shadow: 2px 2px 4px rgba(0,0,0,0.4); }
-    .nav-link { transition: color .3s, border-bottom-color .3s; border-bottom: 2px solid transparent; }
-    .nav-link:hover, .nav-link.active { color:#991b1b; border-bottom-color:#991b1b; }
+    .text-shadow { text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
+    
+    /* --- 現代的なグラデーション --- */
+    .gradient-bg { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+    .gradient-accent { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); }
+    .gradient-warm { background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%); }
+    
+    /* --- ナビゲーション --- */
+    .nav-link { 
+      transition: all .3s ease; 
+      border-bottom: 2px solid transparent; 
+      position: relative;
+      overflow: hidden;
+    }
+    .nav-link::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: left 0.5s;
+    }
+    .nav-link:hover::before { left: 100%; }
+    .nav-link:hover, .nav-link.active { 
+      color: #667eea; 
+      border-bottom-color: #667eea;
+      transform: translateY(-2px);
+    }
+
+    /* --- カード効果 --- */
+    .hover-lift { 
+      transition: all .3s ease; 
+    }
+    .hover-lift:hover { 
+      transform: translateY(-8px); 
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    }
 
     /* --- Promise diagram --- */
-    .promise-diagram-center, .promise-diagram-item { transition: all .3s ease-in-out; }
+    .promise-diagram-center, .promise-diagram-item { 
+      transition: all .4s cubic-bezier(0.4, 0, 0.2, 1); 
+    }
+    .promise-diagram-center:hover { 
+      transform: scale(1.1); 
+      box-shadow: 0 20px 25px -5px rgba(102, 126, 234, 0.3);
+    }
+    .promise-diagram-item:hover { 
+      transform: scale(1.05); 
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    }
 
     /* --- Flip cards --- */
     .perspective-1000 { perspective: 1000px; }
-    .strategy-card { position: relative; transform-style: preserve-3d; transition: transform .6s ease; }
-    .strategy-card .card-face { position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+    .strategy-card { 
+      position: relative; 
+      transform-style: preserve-3d; 
+      transition: transform .6s ease; 
+    }
+    .strategy-card .card-face { 
+      position: absolute; 
+      inset: 0; 
+      backface-visibility: hidden; 
+      -webkit-backface-visibility: hidden;
+      border-radius: 12px;
+    }
     .strategy-card .card-face.back { transform: rotateY(180deg); }
     .strategy-card.is-flipped { transform: rotateY(180deg); }
+    
+    /* --- アニメーション --- */
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+    .float-animation { animation: float 3s ease-in-out infinite; }
+    
+    /* --- ボタン効果 --- */
+    .btn-modern {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      transform: translateY(0);
+      transition: all .3s ease;
+      box-shadow: 0 4px 15px 0 rgba(102, 126, 234, 0.3);
+    }
+    .btn-modern:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px 0 rgba(102, 126, 234, 0.4);
+    }
+
+    /* --- セクション区切り --- */
+    .section-divider {
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #667eea, transparent);
+      margin: 0 auto;
+      width: 100px;
+    }
   </style>
 </head>
 <body class="bg-stone-100 text-stone-800">
-  <header id="header" class="bg-white/80 backdrop-blur-md sticky top-0 z-50 shadow-md">
-    <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
-      <a href="#hero" class="text-xl md:text-2xl font-black text-red-900">國士塾</a>
+  <header id="header" class="bg-white/90 backdrop-blur-lg sticky top-0 z-50 shadow-lg border-b border-purple-100">
+    <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+      <a href="#hero" class="text-2xl md:text-3xl font-black bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent hover:scale-105 transition-transform">國士塾</a>
       <div class="hidden md:flex space-x-8">
         <a href="#philosophy" class="nav-link">理念</a>
         <a href="#promise" class="nav-link">私たちの約束</a>
         <a href="#community" class="nav-link">地域との関わり</a>
         <a href="#activity" class="nav-link">活動内容</a>
-        <a href="#contact" class="nav-link bg-red-800 text-white px-4 py-2 rounded-md hover:bg-red-900 transition-colors">無料体験会</a>
+        <a href="#contact" class="nav-link btn-modern text-white px-6 py-3 rounded-full font-semibold hover:text-white">無料体験会</a>
       </div>
-      <button id="mobile-menu-button" class="md:hidden focus:outline-none" aria-label="メニュー">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+      <button id="mobile-menu-button" class="md:hidden focus:outline-none p-2 rounded-lg hover:bg-purple-50 transition-colors" aria-label="メニュー">
+        <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
       </button>
     </nav>
-    <div id="mobile-menu" class="hidden md:hidden">
-      <a href="#philosophy" class="block py-2 px-6 text-sm hover:bg-stone-200">理念</a>
-      <a href="#promise" class="block py-2 px-6 text-sm hover:bg-stone-200">私たちの約束</a>
-      <a href="#community" class="block py-2 px-6 text-sm hover:bg-stone-200">地域との関わり</a>
-      <a href="#activity" class="block py-2 px-6 text-sm hover:bg-stone-200">活動内容</a>
-      <a href="#contact" class="block py-2 px-6 text-sm bg-stone-200 font-bold hover:bg-stone-300">無料体験会はこちら</a>
+    <div id="mobile-menu" class="hidden md:hidden bg-white/95 backdrop-blur-lg">
+      <a href="#philosophy" class="block py-3 px-6 text-sm hover:bg-purple-50 border-l-4 border-transparent hover:border-purple-400 transition-all">理念</a>
+      <a href="#promise" class="block py-3 px-6 text-sm hover:bg-purple-50 border-l-4 border-transparent hover:border-purple-400 transition-all">私たちの約束</a>
+      <a href="#community" class="block py-3 px-6 text-sm hover:bg-purple-50 border-l-4 border-transparent hover:border-purple-400 transition-all">地域との関わり</a>
+      <a href="#activity" class="block py-3 px-6 text-sm hover:bg-purple-50 border-l-4 border-transparent hover:border-purple-400 transition-all">活動内容</a>
+      <a href="#contact" class="block py-3 px-6 text-sm font-bold gradient-accent text-white hover:shadow-lg transition-all rounded-r-full">無料体験会はこちら</a>
     </div>
   </header>
 
   <main>
-    <!-- HERO: fixed extra closing tag and structure -->
-    <section id="hero" class="h-[85vh] md:h-screen bg-cover bg-center flex items-center justify-center text-white" style="background-image: url('images/dojo-bg.jpg');">
-      <div class="text-center bg-black/60 p-8 md:p-12 rounded-lg max-w-4xl mx-auto backdrop-blur-sm">
-        <h1 class="text-4xl md:text-6xl lg:text-7xl font-black text-shadow tracking-wider mb-6">格闘空手 國士塾</h1>
-        <p class="mt-4 text-xl md:text-3xl font-light text-shadow leading-relaxed">単なる道場ではなく、人生の羅針盤となる場所。</p>
-        <a href="#contact" class="mt-8 inline-block bg-red-800 hover:bg-red-900 text-white font-bold py-3 px-8 rounded-lg transition-all duration-300 text-lg shadow-lg hover:shadow-xl transform hover:-translate-y-1">まずは無料体験から</a>
+    <!-- HERO: より魅力的で現代的なデザイン -->
+    <section id="hero" class="h-screen bg-gradient-to-br from-indigo-900 via-purple-800 to-pink-700 flex items-center justify-center text-white relative overflow-hidden">
+      <!-- 背景アニメーション -->
+      <div class="absolute inset-0 opacity-20">
+        <div class="absolute top-1/4 left-1/4 w-64 h-64 bg-white rounded-full mix-blend-multiply filter blur-xl float-animation"></div>
+        <div class="absolute top-1/3 right-1/4 w-96 h-96 bg-purple-300 rounded-full mix-blend-multiply filter blur-xl float-animation" style="animation-delay: -1s;"></div>
+        <div class="absolute bottom-1/4 left-1/3 w-80 h-80 bg-pink-300 rounded-full mix-blend-multiply filter blur-xl float-animation" style="animation-delay: -2s;"></div>
       </div>
-    </section>
-
-    <section id="philosophy" class="py-16 md:py-24 bg-white">
-      <div class="container mx-auto px-6 text-center">
-        <h2 class="text-3xl md:text-4xl font-bold mb-4">國士塾の理念</h2>
-        <p class="max-w-3xl mx-auto text-stone-600 mb-12">
-          私たちは、単に空手の技術を教えるだけの道場ではありません。<br />
-          武道本来の厳しさの中に「楽しさ」と「成長実感」を見出し、塾生が自発的に「強くなりたい」と願える環境を創ります。<br />
-          目指すのは、困難に立ち向かう精神力と、他者を思いやる優しさを備えた人間育成です。
+      
+      <div class="text-center relative z-10 px-8 md:px-12 max-w-6xl mx-auto">
+        <h1 class="text-5xl md:text-7xl lg:text-8xl font-black text-shadow tracking-wider mb-8 bg-gradient-to-r from-white to-purple-200 bg-clip-text">
+          格闘空手<br class="md:hidden">
+          <span class="text-transparent bg-gradient-to-r from-yellow-400 to-pink-400 bg-clip-text">國士塾</span>
+        </h1>
+        <p class="mt-6 text-xl md:text-2xl lg:text-3xl font-light text-shadow leading-relaxed text-purple-100">
+          ✨ 単なる道場ではなく、人生の羅針盤となる場所 ✨
         </p>
-        <div class="grid md:grid-cols-3 gap-8">
-          <div class="p-8 border-2 border-stone-200 rounded-lg">
-            <div class="text-5xl font-black text-red-900 mb-4">心</div>
-            <h3 class="text-xl font-bold mb-2">不動の精神</h3>
-            <p class="text-stone-600">何事にも屈しない強い心、自分を律する克己心を養い、礼儀と節度を学びます。</p>
+        <p class="mt-4 text-lg md:text-xl text-purple-200">
+          みんなで一緒に、強く、優しく、かっこよく。
+        </p>
+        <div class="mt-12 flex flex-col sm:flex-row gap-4 justify-center items-center">
+          <a href="#contact" class="btn-modern text-white font-bold py-4 px-10 rounded-full text-lg shadow-2xl hover:shadow-purple-500/25 transition-all duration-300 transform hover:scale-105">
+            🥋 まずは無料体験から
+          </a>
+          <a href="#philosophy" class="border-2 border-white/30 text-white font-semibold py-4 px-8 rounded-full text-lg hover:bg-white/10 transition-all duration-300 backdrop-blur-sm">
+            理念を見る →
+          </a>
+        </div>
+      </div>
+      
+      <!-- スクロールインジケーター -->
+      <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white/70 animate-bounce">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+        </svg>
+      </div>
+    </section>
+
+    <section id="philosophy" class="py-20 md:py-28 bg-gradient-to-b from-white to-purple-50">
+      <div class="container mx-auto px-6 text-center">
+        <div class="section-divider mb-8"></div>
+        <h2 class="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">國士塾の理念</h2>
+        <p class="max-w-4xl mx-auto text-gray-600 mb-16 text-lg leading-relaxed">
+          私たちは、単に空手の技術を教えるだけの道場ではありません。✨<br />
+          武道本来の厳しさの中に「楽しさ」と「成長実感」を見出し、塾生が自発的に「強くなりたい」と願える環境を創ります。🌟<br />
+          目指すのは、困難に立ち向かう精神力と、他者を思いやる優しさを備えた人間育成です。💪
+        </p>
+        <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          <div class="p-8 bg-white rounded-2xl shadow-lg hover-lift border border-purple-100">
+            <div class="w-20 h-20 mx-auto mb-6 bg-gradient-to-br from-red-400 to-pink-500 rounded-full flex items-center justify-center">
+              <span class="text-3xl text-white font-black">心</span>
+            </div>
+            <h3 class="text-2xl font-bold mb-4 text-gray-800">不動の精神</h3>
+            <p class="text-gray-600 leading-relaxed">何事にも屈しない強い心、自分を律する克己心を養い、礼儀と節度を学びます。💝</p>
           </div>
-          <div class="p-8 border-2 border-stone-200 rounded-lg">
-            <div class="text-5xl font-black text-red-900 mb-4">技</div>
-            <h3 class="text-xl font-bold mb-2">実戦の技術</h3>
-            <p class="text-stone-600">護身にも役立つ実戦性を重視。基本から応用まで、使える技術を徹底的に指導します。</p>
+          <div class="p-8 bg-white rounded-2xl shadow-lg hover-lift border border-purple-100">
+            <div class="w-20 h-20 mx-auto mb-6 bg-gradient-to-br from-blue-400 to-purple-500 rounded-full flex items-center justify-center">
+              <span class="text-3xl text-white font-black">技</span>
+            </div>
+            <h3 class="text-2xl font-bold mb-4 text-gray-800">実戦の技術</h3>
+            <p class="text-gray-600 leading-relaxed">護身にも役立つ実戦性を重視。基本から応用まで、使える技術を徹底的に指導します。🥋</p>
           </div>
-          <div class="p-8 border-2 border-stone-200 rounded-lg">
-            <div class="text-5xl font-black text-red-900 mb-4">体</div>
-            <h3 class="text-xl font-bold mb-2">強靭な肉体</h3>
-            <p class="text-stone-600">科学的アプローチも取り入れ、安全かつ効果的に心身を鍛え上げます。</p>
+          <div class="p-8 bg-white rounded-2xl shadow-lg hover-lift border border-purple-100">
+            <div class="w-20 h-20 mx-auto mb-6 bg-gradient-to-br from-green-400 to-teal-500 rounded-full flex items-center justify-center">
+              <span class="text-3xl text-white font-black">体</span>
+            </div>
+            <h3 class="text-2xl font-bold mb-4 text-gray-800">強靭な肉体</h3>
+            <p class="text-gray-600 leading-relaxed">科学的アプローチも取り入れ、安全かつ効果的に心身を鍛え上げます。💪</p>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="promise" class="py-16 md:py-24 bg-stone-100">
+    <section id="promise" class="py-20 md:py-28 gradient-warm">
       <div class="container mx-auto px-6">
-        <div class="text-center mb-12">
-          <h2 class="text-3xl md:text-4xl font-bold mb-4">私たちの約束：感動体験の創出</h2>
-          <p class="max-w-3xl mx-auto text-stone-600">私たちの最大の強みは、塾生一人ひとりとの人間的な繋がりです。指導員全員があなたのことを深く理解し、本気で向き合う。そのための仕組みが『塾生カルテ』です。これはあなたの成長物語を共に紡ぐための羅針盤です。</p>
+        <div class="text-center mb-16">
+          <div class="section-divider mb-8"></div>
+          <h2 class="text-4xl md:text-5xl font-bold mb-6 text-gray-800">私たちの約束：感動体験の創出 💫</h2>
+          <p class="max-w-4xl mx-auto text-gray-700 text-lg leading-relaxed">私たちの最大の強みは、塾生一人ひとりとの人間的な繋がりです。✨ 指導員全員があなたのことを深く理解し、本気で向き合う。そのための仕組みが『塾生カルテ』です。これはあなたの成長物語を共に紡ぐための羅針盤です。🧭</p>
         </div>
-        <div class="flex flex-col lg:flex-row items-center gap-8">
+        <div class="flex flex-col lg:flex-row items-center gap-12">
           <div id="promise-diagram" class="w-full lg:w-1/2 h-96 relative flex items-center justify-center">
-            <div id="diagram-center" class="promise-diagram-center w-32 h-32 md:w-40 md:h-40 bg-red-800 rounded-full flex flex-col items-center justify-center text-white text-center shadow-2xl cursor-pointer">
-              <span class="font-bold text-lg">塾生</span>
-              <span class="text-sm">(あなた)</span>
+            <div id="diagram-center" class="promise-diagram-center w-36 h-36 md:w-44 md:h-44 gradient-bg rounded-full flex flex-col items-center justify-center text-white text-center shadow-2xl cursor-pointer border-4 border-white">
+              <span class="font-bold text-xl">塾生</span>
+              <span class="text-sm">(あなた) ✨</span>
             </div>
-            <div id="diagram-item-1" class="promise-diagram-item absolute w-24 h-24 md:w-28 md:h-28 bg-white rounded-full flex items-center justify-center text-center p-2 shadow-lg border-2 border-red-200">空手の目標<br />・成長</div>
-            <div id="diagram-item-2" class="promise-diagram-item absolute w-24 h-24 md:w-28 md:h-28 bg-white rounded-full flex items-center justify-center text-center p-2 shadow-lg border-2 border-red-200">学校・仕事<br />での様子</div>
-            <div id="diagram-item-3" class="promise-diagram-item absolute w-24 h-24 md:w-28 md:h-28 bg-white rounded-full flex items-center justify-center text-center p-2 shadow-lg border-2 border-red-200">趣味・<br />関心事</div>
-            <div id="diagram-item-4" class="promise-diagram-item absolute w-24 h-24 md:w-28 md:h-28 bg-white rounded-full flex items-center justify-center text-center p-2 shadow-lg border-2 border-red-200">コンディション<br />・安全配慮</div>
+            <div id="diagram-item-1" class="promise-diagram-item absolute w-28 h-28 md:w-32 md:h-32 bg-white rounded-full flex items-center justify-center text-center p-3 shadow-xl border-2 border-purple-200 hover:border-purple-400">🎯 空手の目標<br />・成長</div>
+            <div id="diagram-item-2" class="promise-diagram-item absolute w-28 h-28 md:w-32 md:h-32 bg-white rounded-full flex items-center justify-center text-center p-3 shadow-xl border-2 border-purple-200 hover:border-purple-400">📚 学校・仕事<br />での様子</div>
+            <div id="diagram-item-3" class="promise-diagram-item absolute w-28 h-28 md:w-32 md:h-32 bg-white rounded-full flex items-center justify-center text-center p-3 shadow-xl border-2 border-purple-200 hover:border-purple-400">🎨 趣味・<br />関心事</div>
+            <div id="diagram-item-4" class="promise-diagram-item absolute w-28 h-28 md:w-32 md:h-32 bg-white rounded-full flex items-center justify-center text-center p-3 shadow-xl border-2 border-purple-200 hover:border-purple-400">💪 コンディション<br />・安全配慮</div>
           </div>
           <div class="w-full lg:w-1/2">
-            <div id="promise-text-container" class="bg-white p-6 rounded-lg shadow-inner min-h-[16rem] flex items-center justify-center">
-              <p id="promise-text" class="text-stone-700 text-lg text-center transition-opacity duration-300">中央の円や周りの項目にカーソルを合わせると、私たちがどのようにあなたと向き合うかが表示されます。</p>
+            <div id="promise-text-container" class="bg-white/80 backdrop-blur-sm p-8 rounded-2xl shadow-xl min-h-[20rem] flex items-center justify-center border border-purple-100">
+              <p id="promise-text" class="text-gray-700 text-lg text-center transition-all duration-500 leading-relaxed">中央の円や周りの項目にカーソルを合わせると、私たちがどのようにあなたと向き合うかが表示されます。💝</p>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="community" class="py-16 md:py-24 bg-white">
+    <section id="community" class="py-20 md:py-28 bg-white">
       <div class="container mx-auto px-6">
-        <div class="text-center mb-12">
-          <h2 class="text-3xl md:text-4xl font-bold mb-4">ゼロからの挑戦：地域との関わり</h2>
-          <p class="max-w-3xl mx-auto text-stone-600">私たちは指導者の情熱と足で地域との繋がりを築きます。一枚のチラシ、一回の挨拶から始まる信頼関係こそが、私たちの財産です。各カードをクリックして、私たちの取り組みをご覧ください。</p>
+        <div class="text-center mb-16">
+          <div class="section-divider mb-8"></div>
+          <h2 class="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">ゼロからの挑戦：地域との関わり 🌟</h2>
+          <p class="max-w-4xl mx-auto text-gray-600 text-lg leading-relaxed">私たちは指導者の情熱と足で地域との繋がりを築きます。💪 一枚のチラシ、一回の挨拶から始まる信頼関係こそが、私たちの財産です。各カードをクリックして、私たちの取り組みをご覧ください。✨</p>
         </div>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
-          <div class="h-48 perspective-1000">
-            <div class="strategy-card w-full h-full">
-              <div class="card-face front relative w-full h-full text-center p-6 bg-stone-100 border-2 border-red-200 rounded-lg flex flex-col justify-center items-center cursor-pointer">
-                <h3 class="text-xl font-bold">オンライン発信</h3>
-                <p class="text-sm mt-2">SNS・Google</p>
-                <p class="text-xs mt-4 text-red-800">クリックして詳細を見る</p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          <div class="h-56 perspective-1000">
+            <div class="strategy-card w-full h-full hover-lift">
+              <div class="card-face front relative w-full h-full text-center p-6 bg-gradient-to-br from-blue-50 to-purple-50 border-2 border-blue-200 rounded-xl flex flex-col justify-center items-center cursor-pointer shadow-lg">
+                <div class="text-4xl mb-3">📱</div>
+                <h3 class="text-xl font-bold text-gray-800 mb-2">オンライン発信</h3>
+                <p class="text-sm text-gray-600 mb-4">SNS・Google</p>
+                <p class="text-xs text-blue-600 font-semibold">クリックして詳細を見る ✨</p>
               </div>
-              <div class="card-face back w-full h-full p-4 bg-red-800 text-white rounded-lg flex items-center justify-center">
-                <p class="text-sm">GoogleマップやSNSで稽古の様子を毎日発信！あなたのスマホに私たちの情熱を届けます。</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="h-48 perspective-1000">
-            <div class="strategy-card w-full h-full">
-              <div class="card-face front relative w-full h-full text-center p-6 bg-stone-100 border-2 border-red-200 rounded-lg flex flex-col justify-center items-center cursor-pointer">
-                <h3 class="text-xl font-bold">公開稽古</h3>
-                <p class="text-sm mt-2">ゲリラ演武</p>
-                <p class="text-xs mt-4 text-red-800">クリックして詳細を見る</p>
-              </div>
-              <div class="card-face back w-full h-full p-4 bg-red-800 text-white rounded-lg flex items-center justify-center">
-                <p class="text-sm">地域の公園などで、私たちの稽古をサプライズ公開！空手の迫力と楽しさを生で感じてください。</p>
+              <div class="card-face back w-full h-full p-6 gradient-bg text-white rounded-xl flex items-center justify-center shadow-lg">
+                <p class="text-sm text-center leading-relaxed">📸 GoogleマップやSNSで稽古の様子を毎日発信！あなたのスマホに私たちの情熱を届けます。💫</p>
               </div>
             </div>
           </div>
 
-          <div class="h-48 perspective-1000">
-            <div class="strategy-card w-full h-full">
-              <div class="card-face front relative w-full h-full text-center p-6 bg-stone-100 border-2 border-red-200 rounded-lg flex flex-col justify-center items-center cursor-pointer">
-                <h3 class="text-xl font-bold">感動体験会</h3>
-                <p class="text-sm mt-2">口コミの源泉</p>
-                <p class="text-xs mt-4 text-red-800">クリックして詳細を見る</p>
+          <div class="h-56 perspective-1000">
+            <div class="strategy-card w-full h-full hover-lift">
+              <div class="card-face front relative w-full h-full text-center p-6 bg-gradient-to-br from-green-50 to-teal-50 border-2 border-green-200 rounded-xl flex flex-col justify-center items-center cursor-pointer shadow-lg">
+                <div class="text-4xl mb-3">🏞️</div>
+                <h3 class="text-xl font-bold text-gray-800 mb-2">公開稽古</h3>
+                <p class="text-sm text-gray-600 mb-4">ゲリラ演武</p>
+                <p class="text-xs text-green-600 font-semibold">クリックして詳細を見る ✨</p>
               </div>
-              <div class="card-face back w-full h-full p-4 bg-red-800 text-white rounded-lg flex items-center justify-center">
-                <p class="text-sm">「来てよかった！」心からそう思える体験会をお約束します。この感動が、私たちの最高の広告です。</p>
+              <div class="card-face back w-full h-full p-6 bg-gradient-to-br from-green-500 to-teal-500 text-white rounded-xl flex items-center justify-center shadow-lg">
+                <p class="text-sm text-center leading-relaxed">🥋 地域の公園などで、私たちの稽古をサプライズ公開！空手の迫力と楽しさを生で感じてください。🌟</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="h-56 perspective-1000">
+            <div class="strategy-card w-full h-full hover-lift">
+              <div class="card-face front relative w-full h-full text-center p-6 bg-gradient-to-br from-pink-50 to-red-50 border-2 border-pink-200 rounded-xl flex flex-col justify-center items-center cursor-pointer shadow-lg">
+                <div class="text-4xl mb-3">✨</div>
+                <h3 class="text-xl font-bold text-gray-800 mb-2">感動体験会</h3>
+                <p class="text-sm text-gray-600 mb-4">口コミの源泉</p>
+                <p class="text-xs text-pink-600 font-semibold">クリックして詳細を見る ✨</p>
+              </div>
+              <div class="card-face back w-full h-full p-6 bg-gradient-to-br from-pink-500 to-red-500 text-white rounded-xl flex items-center justify-center shadow-lg">
+                <p class="text-sm text-center leading-relaxed">💝「来てよかった！」心からそう思える体験会をお約束します。この感動が、私たちの最高の広告です。🌟</p>
               </div>
             </div>
           </div>
